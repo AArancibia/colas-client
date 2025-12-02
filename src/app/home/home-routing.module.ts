@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: "ticket",
-        loadChildren: "@app/home/pages/ticket/ticket.module#TicketModule"
+        loadChildren: () => import('@app/home/pages/ticket/ticket.module').then(m => m.TicketModule)
       }
     ]
   }

@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: "",
         loadChildren:
-          "@app/authentication/authentication.module#AuthenticationModule"
+          () => import('@app/authentication/authentication.module').then(m => m.AuthenticationModule)
       }
     ]
   },

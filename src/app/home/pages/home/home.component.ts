@@ -32,7 +32,7 @@ import { AuthRO } from "@app/authentication/auth.dto";
 export class HomeComponent implements OnInit, AfterViewInit {
   isCollapsed = false;
   triggerTemplate: TemplateRef<void> | null = null;
-  @ViewChild("trigger") customTrigger: TemplateRef<void>;
+  @ViewChild("trigger", { static: false }) customTrigger: TemplateRef<void>;
   inputValue: string;
   usuarios: Usuario[] = [];
   usuarioLogueado: AuthRO = new AuthRO();
