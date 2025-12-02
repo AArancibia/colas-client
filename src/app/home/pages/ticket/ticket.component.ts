@@ -1,20 +1,21 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
-import { WebsocketService } from "@app/core/services/websocket/websocket.service";
-import { TicketService } from "@app/core/services/ticket/ticket.service";
-import { Ticket } from "@app/core/models/ticket.model";
-import { tap } from "rxjs/operators";
-import { Tramite } from "@app/core/models/tramite.model";
-import { Tematica } from "@app/core/models/tematica.model";
-import { TematicaService } from "@app/core/services/tematica/tematica.service";
-import { SnackbarService } from "ngx-snackbar";
-import { TramiteService } from "@app/core/services/tramite/tramite.service";
-import { Administrado } from "@app/core/models/administrado.model";
-import { DetEstadoTicket } from "@app/core/models/detestadoticket.model";
-import { NzNotificationService } from "ng-zorro-antd";
-import { VentanillaService } from "@app/core/services/ventanilla/ventanilla.service";
-import { Ventanilla } from "@app/core/models/ventanilla.model";
-import { Router } from "@angular/router";
-import { AuthenticationService } from "@app/authentication/authentication.service";
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { WebsocketService } from '@app/core/services/websocket/websocket.service';
+import { TicketService } from '@app/core/services/ticket/ticket.service';
+import { Ticket } from '@app/core/models/ticket.model';
+import {filter, map, takeWhile, tap} from 'rxjs/operators';
+import { Tramite } from '@app/core/models/tramite.model';
+import { Tematica } from '@app/core/models/tematica.model';
+import { TematicaService } from '@app/core/services/tematica/tematica.service';
+import { SnackbarService } from 'ngx-snackbar';
+import { TramiteService } from '@app/core/services/tramite/tramite.service';
+import { Administrado } from '@app/core/models/administrado.model';
+import { DetEstadoTicket } from '@app/core/models/detestadoticket.model';
+import { NzNotificationService } from 'ng-zorro-antd';
+import { VentanillaService } from '@app/core/services/ventanilla/ventanilla.service';
+import { Ventanilla } from '@app/core/models/ventanilla.model';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '@app/authentication/authentication.service';
+import {iif, Observable} from 'rxjs';
 
 /**
  * @author Alexis Arancibia Sanchez <aarancibia4251@gmail.com>
@@ -23,13 +24,14 @@ import { AuthenticationService } from "@app/authentication/authentication.servic
  * Ticket component
  */
 @Component({
-  selector: "app-ticket",
-  templateUrl: "./ticket.component.html",
-  styleUrls: ["./ticket.component.scss"]
+  selector: 'app-ticket',
+  templateUrl: './ticket.component.html',
+  styleUrls: ['./ticket.component.scss']
 })
 export class TicketComponent implements OnInit, AfterViewInit {
   listTematica: Tematica[] = [];
   listTicket: any[] = [];
+  tickets$: Observable<Ticket[]> = new Observable<Ticket[]>();
   listaTramites: Tramite[] = [];
   mostrarInfoAdministrado: Administrado = new Administrado();
   selectTicket: Ticket;
@@ -38,15 +40,15 @@ export class TicketComponent implements OnInit, AfterViewInit {
   idtematica: number;
   idtramite: number;
   ventanilla: number; // Esto solo tiene el id
-  derivar: boolean = false;
+  derivar = false;
   ventanillaDerivar: any;
   visible: boolean;
   inputTramites: string;
   inputTematicas: string;
-  pasos: number = 0;
+  pasos = 0;
   detallesTramite: any;
-  activo: number = 0;
-  estadoVentanilla: number = 0;
+  activo = 0;
+  estadoVentanilla = 0;
   datosVentanilla: Ventanilla = new Ventanilla();
   constructor(
     private wsSocket: WebsocketService,
@@ -65,34 +67,16 @@ export class TicketComponent implements OnInit, AfterViewInit {
    *
    */
   ngOnInit() {
-    // this.ventanillaService.statusV$
-    //   .pipe(
-    //     tap((ventanilla: Ventanilla) => {
-    //       this.mostrarInfoAdministrado = {};
-    //       //this.selectTicket = null;
-    //       this.validacionEstados = null;
-    //       this.idtramite = null;
-    //       this.pasos = 0;
-    //       this.datosVentanilla = ventanilla;
-    //       this.listarVentanillas();
-    //       this.listarTematicas();
-    //       this.ventanilla = ventanilla.id;
-    //       this.listarTickets();
-    //       this.derivar = false;
-    //     })
-    //   )
-    //   .subscribe();
     this.mostrarInfoAdministrado = {};
-          //this.selectTicket = null;
-          this.validacionEstados = null;
-          this.idtramite = null;
-          this.pasos = 0;
-          this.datosVentanilla = this.authenticationService.auth.ventanilla;
-          this.listarVentanillas();
-          this.listarTematicas();
-          this.ventanilla = this.datosVentanilla.id;
-          this.listarTickets();
-          this.derivar = false;
+    this.validacionEstados = null;
+    this.idtramite = null;
+    this.pasos = 0;
+    this.datosVentanilla = this.authenticationService.auth.ventanilla;
+    this.listarVentanillas();
+    this.listarTematicas();
+    this.ventanilla = this.datosVentanilla.id;
+    this.listarTickets();
+    this.derivar = false;
     this.cargarConfiguracion();
   }
 
@@ -766,11 +750,11 @@ export class TicketComponent implements OnInit, AfterViewInit {
               width: 30rem;
               border: 1px solid #8d8d8d;;
             }
-            
+
             .satisfaccion__consulta {
               padding: .5rem 0;
             }
-            
+
             .satisfaccion__consulta-caritas {
                 display: flex;
                 flex-direction: row;
@@ -778,29 +762,29 @@ export class TicketComponent implements OnInit, AfterViewInit {
                 justify-content: space-around;
                 align-items: center;
             }
-            
+
             .satisfaccion__consulta-caritas p {
               text-align: center;
             }
-            
+
             .satisfaccion__consulta-caritas i {
               font-size: 3rem;
             }
-            
+
             .satisfaccion__consulta-pregunta {
                   margin-bottom: .5rem;
             }
-            
+
             .satisfaccion__caja {
                 display: flex;
                 flex-direction: row;
               }
-              
+
               .satisfaccion__caja h2 {
                 text-align: center;
                 width: 30%;
               }
-              
+
               .satisfaccion__titulo {
                 padding: 0;
                 margin-top: .5rem;
