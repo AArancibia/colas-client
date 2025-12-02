@@ -1,18 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { WebsocketService } from "./core/services/websocket/websocket.service";
-import { TicketService } from "@app/core/services/ticket/ticket.service";
-import { NotificacionService } from "@app/shared/components/notification/notificacion.service";
+import { Component, OnInit } from '@angular/core';
+import { WebsocketService } from './core/services/websocket/websocket.service';
+import { NotificacionService } from '@app/shared/components/notification/notificacion.service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = "frontend-colas";
+  title = 'frontend-colas';
   constructor(
     public wsSocket: WebsocketService,
-    public ticketSocketService: TicketService,
     private notificationService: NotificacionService
   ) {
     this.verificarEstadoServidor();

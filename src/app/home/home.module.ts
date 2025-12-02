@@ -7,7 +7,6 @@ import {SharedModule} from '../shared/shared.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {environment} from '@env/environment';
-import {SnackbarModule} from 'ngx-snackbar';
 
 const config: SocketIoConfig = { url: environment.wsUrl , options: {} };
 

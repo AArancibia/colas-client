@@ -2,11 +2,10 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { WebsocketService } from '@app/core/services/websocket/websocket.service';
 import { TicketService } from '@app/core/services/ticket/ticket.service';
 import { Ticket } from '@app/core/models/ticket.model';
-import {filter, map, takeWhile, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 import { Tramite } from '@app/core/models/tramite.model';
 import { Tematica } from '@app/core/models/tematica.model';
 import { TematicaService } from '@app/core/services/tematica/tematica.service';
-import { SnackbarService } from 'ngx-snackbar';
 import { TramiteService } from '@app/core/services/tramite/tramite.service';
 import { Administrado } from '@app/core/models/administrado.model';
 import { DetEstadoTicket } from '@app/core/models/detestadoticket.model';
@@ -15,7 +14,7 @@ import { VentanillaService } from '@app/core/services/ventanilla/ventanilla.serv
 import { Ventanilla } from '@app/core/models/ventanilla.model';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/authentication/authentication.service';
-import {iif, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 /**
  * @author Alexis Arancibia Sanchez <aarancibia4251@gmail.com>
@@ -56,7 +55,6 @@ export class TicketComponent implements OnInit, AfterViewInit {
     public tematicaService: TematicaService,
     public tramiteService: TramiteService,
     private notificationService: NzNotificationService,
-    private snackBar: SnackbarService,
     private ventanillaService: VentanillaService,
     private authenticationService: AuthenticationService,
     private router: Router
@@ -309,21 +307,7 @@ export class TicketComponent implements OnInit, AfterViewInit {
           this.validacionEstados.estadoticketId === 1 ||
           this.validacionEstados.estadoticketId === 2
         ) {
-          this.snackBar.add({
-            msg: `Llamando ticket ${this.selectTicket.codigo}`,
-            background: "#000000",
-            color: "#ffffff",
-            customClass: ".snack-message",
-            action: {
-              text: `Quitar`,
-              onClick: () => {},
-              color: "#108ee9"
-            },
-            timeout: 3000,
-            onRemove: () => {
-              this.snackBar.clear();
-            }
-          });
+          // ToDo add message "Llamando ticket"
         }
         this.ticketService
           .asignarVentanilla(this.selectTicket.id, this.ventanilla)

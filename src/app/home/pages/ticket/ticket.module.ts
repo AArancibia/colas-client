@@ -6,7 +6,6 @@ import {TicketComponent} from '@app/home/pages/ticket/ticket.component';
 
 import { TicketRoutingModule } from './ticket-routing.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
-import {SnackbarModule} from 'ngx-snackbar';
 import {FormsModule} from '@angular/forms';
 import {SatisfaccionComponent} from '@app/home/pages/ticket/satisfaccion/satisfaccion.component';
 
@@ -18,7 +17,6 @@ import {SatisfaccionComponent} from '@app/home/pages/ticket/satisfaccion/satisfa
     TicketRoutingModule,
     NgZorroAntdModule,
     SharedModule,
-    SnackbarModule.forRoot()
   ],
   exports: [ TicketComponent, SatisfaccionComponent ],
 })

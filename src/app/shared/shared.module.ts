@@ -6,7 +6,6 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { CardticketDirective } from './directives/cardticket.directive';
 import { CardDirective } from './directives/card.directive';
 import {NotificationComponent} from './components/notification/notification.component';
-import {SnackbarModule} from 'ngx-snackbar';
 import {TramitesPipe} from '@app/shared/pipes/tramites.pipe';
 
 @NgModule({
@@ -21,7 +20,6 @@ import {TramitesPipe} from '@app/shared/pipes/tramites.pipe';
   ],
   imports: [
     CommonModule,
-    SnackbarModule.forRoot()
   ],
   exports: [
     HeaderComponent,

@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Router, CanActivate } from "@angular/router";
-import { AuthenticationService } from "@app/authentication/authentication.service";
+import { Injectable } from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
+import { AuthenticationService } from '@app/authentication/authentication.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   constructor(
@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     if (!this.authenticationService.estaLogueado()) {
-      this.router.navigate(["/authentication"]);
+      this.router.navigate(['/authentication']);
       return false;
     }
     return true;

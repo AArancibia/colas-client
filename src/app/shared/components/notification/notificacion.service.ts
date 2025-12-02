@@ -1,6 +1,5 @@
-import {Injectable, TemplateRef} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {NzNotificationService} from 'ng-zorro-antd';
-import {SnackbarService} from 'ngx-snackbar';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +8,8 @@ export class NotificacionService {
 
   constructor(
     public notification: NzNotificationService,
-    private snackBar: SnackbarService,
   ) {
 
-  }
-
-  addMessage( ticket ) {
-    this.snackBar.add({
-      msg: `Llamado al Ticket ${ ticket.idticket }`,
-      timeout: 3000,
-      action: {
-        text: 'Borrar',
-        onClick: (snack) => {
-          console.log('dismissed: ' + snack.id);
-        },
-      },
-    });
   }
 
   messageOffline() {

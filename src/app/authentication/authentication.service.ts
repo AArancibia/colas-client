@@ -1,21 +1,21 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from "@env/environment";
-import { Observable } from "rxjs";
-import { AuthDTO, AuthRO } from "./auth.dto";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '@env/environment';
+import { Observable } from 'rxjs';
+import { AuthDTO, AuthRO } from './auth.dto';
+import { map } from 'rxjs/operators';
 import {
   USUARIO,
   ACCES_TOKEN,
   VENTANILLA
-} from "@app/shared/constants/auth.constants";
-import { Usuario } from "@app/core/models/usuario.model";
-import { VentanillaService } from "@app/core/services/ventanilla/ventanilla.service";
-import { JwtHelperService } from "@auth0/angular-jwt";
-import { Router } from "@angular/router";
+} from '@app/shared/constants/auth.constants';
+import { Usuario } from '@app/core/models/usuario.model';
+import { VentanillaService } from '@app/core/services/ventanilla/ventanilla.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthenticationService {
   private api: string = environment.url_server;
@@ -34,7 +34,7 @@ export class AuthenticationService {
 
   public obtenerToken() {
     return (this.headers = new HttpHeaders({
-      Authorization: "Bearer " + localStorage.getItem(ACCES_TOKEN)
+      Authorization: 'Bearer ' + localStorage.getItem(ACCES_TOKEN)
     }));
   }
 
@@ -44,7 +44,7 @@ export class AuthenticationService {
   }
 
   login(auth: AuthDTO) {
-    return this.request("POST", "usuario/login", auth).pipe(
+    return this.request('POST', 'usuario/login', auth).pipe(
       map((auth: AuthRO) => {
         this.guardarStorage(auth);
         return true;
@@ -81,7 +81,7 @@ export class AuthenticationService {
     localStorage.removeItem(ACCES_TOKEN);
     localStorage.removeItem(VENTANILLA);
     this.auth = new AuthRO();
-    this.router.navigate(["/authentication"]);
+    this.router.navigate(['/authentication']);
   }
 
   estaLogueado(): boolean {
@@ -89,7 +89,7 @@ export class AuthenticationService {
     try {
       this.helper.decodeToken(token);
     } catch (err) {
-      this.router.navigate(["/authentication"]);
+      this.router.navigate(['/authentication']);
     }
     return !this.helper.isTokenExpired(token);
   }
