@@ -4,23 +4,23 @@ import {
   OnInit,
   TemplateRef,
   ViewChild
-} from "@angular/core";
-import { UsuarioService } from "@app/core/services/usuario/usuario.service";
-import { Usuario } from "@app/core/models/usuario.model";
-import { tap } from "rxjs/operators";
-import { VentanillaService } from "@app/core/services/ventanilla/ventanilla.service";
-import { Ventanilla } from "@app/core/models/ventanilla.model";
-import { NzNotificationService } from "ng-zorro-antd";
-import { AuthenticationService } from "@app/authentication/authentication.service";
-import { AuthRO } from "@app/authentication/auth.dto";
+} from '@angular/core';
+import { UsuarioService } from '@app/core/services/usuario/usuario.service';
+import { Usuario } from '@app/core/models/usuario.model';
+import { tap } from 'rxjs/operators';
+import { VentanillaService } from '@app/core/services/ventanilla/ventanilla.service';
+import { Ventanilla } from '@app/core/models/ventanilla.model';
+import { NzNotificationService } from 'ng-zorro-antd';
+import { AuthenticationService } from '@app/authentication/authentication.service';
+import { AuthRO } from '@app/authentication/auth.dto';
 
 /**
  * Home Component
  */
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 /**
  * @author Alexis Arancibia Sanchez <aarancibia4251@gmail.com>
@@ -32,7 +32,7 @@ import { AuthRO } from "@app/authentication/auth.dto";
 export class HomeComponent implements OnInit, AfterViewInit {
   isCollapsed = false;
   triggerTemplate: TemplateRef<void> | null = null;
-  @ViewChild("trigger", { static: false }) customTrigger: TemplateRef<void>;
+  @ViewChild('trigger') customTrigger: TemplateRef<void>;
   inputValue: string;
   usuarios: Usuario[] = [];
   usuarioLogueado: AuthRO = new AuthRO();
@@ -90,8 +90,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
             this.isCollapsed = true;
           } else {
             this.notificationService.error(
-              "No tienes una ventanilla asignada",
-              "Consulta con el administrador del Sistema",
+              'No tienes una ventanilla asignada',
+              'Consulta con el administrador del Sistema',
               {
                 nzDuration: 0
               }
@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const bottomLeft: any = document.querySelector(
-      ".ant-layout-sider-zero-width-trigger"
+      '.ant-layout-sider-zero-width-trigger'
     );
   }
 

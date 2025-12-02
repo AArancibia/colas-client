@@ -1,4 +1,4 @@
-import {createReducer, on} from '@ngrx/store';
+import {Action, createReducer, on, State} from '@ngrx/store';
 import {addError, removeError} from '@app/store/actions/error.action';
 
 
@@ -10,10 +10,12 @@ const initialState: ErrorState = {
   error: null,
 };
 
-export const errorReducer = createReducer(
+const errorReducer = createReducer(
   initialState,
   on(addError, (state, { error }) => ({ error })),
   on(removeError, state => ({ error: null })),
 );
 
-
+export function reducer(state: State<ErrorState> | undefined, action: Action) {
+  return errorReducer(state, action);
+}
