@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  url_server: "http://18.212.167.46:4052/api/",
-  url_server_tupa: "http://18.212.167.46:4053/api/", //207:4520
-  wsUrl: "http://18.212.167.46:8081"
+  url_server: 'https://arancibia-colas-api-c0ade8c3c762.herokuapp.com/api/',
+  wsUrl: 'https://arancibia-colas-api-c0ade8c3c762.herokuapp.com:8081'
 };

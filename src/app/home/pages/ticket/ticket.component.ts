@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { WebsocketService } from '@app/core/services/websocket/websocket.service';
 import { TicketService } from '@app/core/services/ticket/ticket.service';
 import { Ticket } from '@app/core/models/ticket.model';
@@ -426,8 +426,8 @@ export class TicketComponent implements OnInit, AfterViewInit {
           );
           if (ticket.idventanilla === this.ventanilla) {
             this.listTicket.splice(indexTicketAtendido, 1, ticket);
-            for (let i = 0; i <= ticket.estadosIds.length; i++) {
-              if (ticket.estadosIds[i] === 4 || ticket.estadosIds[i] === 6) {
+            for (let i = 0; i <= ticket.detEstados.length - 1; i++) {
+              if (ticket.detEstados[i].estadoticketId === 4 || ticket.detEstados[i].estadoticketId === 6) {
                 this.listTicket.splice(indexTicketAtendido, 1);
                 break;
               }
