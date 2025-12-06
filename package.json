@@ -5,7 +5,7 @@
     "ng": "ng",
     "compodoc": "npx compodoc -p src/tsconfig.app.json -s -w",
     "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
