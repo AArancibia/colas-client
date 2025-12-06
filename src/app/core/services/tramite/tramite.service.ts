@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class TramiteService {
-  private api: string = environment.url_server_tupa;
+  private api: string = environment.url_server;
   constructor(
     private httpClient: HttpClient,
   ) {}

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TematicaService {
-  private apiTupa: string = environment.url_server_tupa;
+  private apiTupa: string = environment.url_server;
   constructor(
     private httpClient: HttpClient,
   ) { }
