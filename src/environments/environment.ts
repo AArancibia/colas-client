@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url_server: 'http://localhost:4000/api/',
-  wsUrl: 'http://localhost:8081',
+  wsUrl: 'http://localhost:4000',
 };
 
 /*
