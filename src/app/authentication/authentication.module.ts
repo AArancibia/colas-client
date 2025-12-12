@@ -6,7 +6,7 @@ import { AuthenticationComponent } from './authentication.component';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {NzFormModule} from 'ng-zorro-antd/form';
+import {SharedModule} from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [SigninComponent, SignupComponent, AuthenticationComponent],
@@ -16,7 +16,7 @@ import {NzFormModule} from 'ng-zorro-antd/form';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NzFormModule
+    SharedModule,
   ]
 })
 export class AuthenticationModule {}

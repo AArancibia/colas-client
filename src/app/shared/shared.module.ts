@@ -7,7 +7,7 @@ import { CardticketDirective } from './directives/cardticket.directive';
 import { CardDirective } from './directives/card.directive';
 import {NotificationComponent} from './components/notification/notification.component';
 import {TramitesPipe} from '@app/shared/pipes/tramites.pipe';
-import {NzNotificationModule} from 'ng-zorro-antd/notification';
+import {NgZorroModule} from '@app/shared/ng-zorro.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import {NzNotificationModule} from 'ng-zorro-antd/notification';
   ],
   imports: [
     CommonModule,
-    NzNotificationModule,
+    NgZorroModule
   ],
   exports: [
     HeaderComponent,
@@ -31,6 +31,7 @@ import {NzNotificationModule} from 'ng-zorro-antd/notification';
     CardticketDirective,
     CardDirective,
     TramitesPipe,
+    NgZorroModule
   ]
 })
 export class SharedModule { }

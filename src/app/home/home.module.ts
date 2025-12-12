@@ -6,8 +6,6 @@ import {HomeRoutingModule} from './home-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {environment} from '@env/environment';
-import {NzLayoutModule} from 'ng-zorro-antd/layout';
-import {NzMenuModule} from 'ng-zorro-antd/menu';
 
 const config: SocketIoConfig = { url: environment.wsUrl , options: {} };
 
@@ -18,8 +16,6 @@ const config: SocketIoConfig = { url: environment.wsUrl , options: {} };
     FormsModule,
     HomeRoutingModule,
     SharedModule,
-    NzLayoutModule,
-    NzMenuModule,
     SocketIoModule.forRoot( config ),
   ],
   exports: [
