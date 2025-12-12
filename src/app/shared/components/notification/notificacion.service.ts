@@ -1,26 +1,22 @@
-import {Injectable} from '@angular/core';
-import {NzNotificationService} from 'ng-zorro-antd';
+import {inject, Injectable} from '@angular/core';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificacionService {
-
-  constructor(
-    public notification: NzNotificationService,
-  ) {
+  notification = inject(NzNotificationService);
+  constructor() {
 
   }
 
   messageOffline() {
-    this.notification.config({
-      nzTop: '24px',
-    });
     this.notification.error(
       'Servidor Desconectado',
       'No hay conexion con el servidor',
       {
         nzDuration: 0,
+        nzPlacement: 'topLeft'
       }
     );
     const servidor: any = document.querySelector('.ant-notification.ant-notification-topRight');

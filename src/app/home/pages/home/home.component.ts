@@ -10,7 +10,7 @@ import { Usuario } from '@app/core/models/usuario.model';
 import { tap } from 'rxjs/operators';
 import { VentanillaService } from '@app/core/services/ventanilla/ventanilla.service';
 import { Ventanilla } from '@app/core/models/ventanilla.model';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthenticationService } from '@app/authentication/authentication.service';
 import { AuthRO } from '@app/authentication/auth.dto';
 

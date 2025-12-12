@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {NzNotificationService} from 'ng-zorro-antd';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 import {WebsocketService} from '../../../core/services/websocket/websocket.service';
 
 @Component({

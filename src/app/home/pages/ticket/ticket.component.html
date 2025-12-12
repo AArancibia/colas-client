@@ -22,13 +22,13 @@
                   <span
                     *ngIf="selectTicket.codigo == item.codigo && validacionEstados && validacionEstados.estadoticketId === 2"
                     class="lista-items--estado lista-items--estado-llamando">
-                    <i style="float: left;margin: .2rem .2rem" nz-icon type="bell"></i>
+                    <i style="float: left;margin: .2rem .2rem" nz-icon nzType="bell"></i>
                     Llamando
                   </span>
                   <span
                     *ngIf="selectTicket.codigo == item.codigo && validacionEstados && validacionEstados.estadoticketId === 3"
                     class="lista-items--estado lista-items--estado-atendiendo">
-                    <i style="float: left;margin: .2rem .2rem" nz-icon type="sync"></i>
+                    <i style="float: left;margin: .2rem .2rem" nz-icon nzType="sync"></i>
                     Atendiendo
                   </span>
                 </div>
@@ -83,18 +83,18 @@
               color: estadoVentanilla === 4 || ( !selectTicket || validacionEstados && validacionEstados.estadoticketId === 1 ) ?  '#bfbfbf' : ''
               }"
               *ngIf="!derivar; else derivarTemplate"> <!-- && atender  -->
-              <i nz-icon type="upload"></i>
+              <i nz-icon nzType="upload"></i>
               <p>Atender </p>
             </div>
             <ng-template #derivarTemplate>
               <div class="card__footer__button">
-                <i nz-icon type="upload"></i>
+                <i nz-icon nzType="upload"></i>
                 <p
                   nz-popover
-                  [(nzVisible)]="visible"
-                  (nzVisibleChange)="change($event)"
-                  nzTrigger="click"
-                  [nzContent]="contentTemplate"
+                  [(nzPopoverVisible)]="visible"
+                  (nzPopoverVisibleChange)="change($event)"
+                  nzPopoverTrigger="click"
+                  [nzPopoverContent]="contentTemplate"
                 >
                   Derivar
                 </p>
@@ -232,11 +232,11 @@
         <div class="card__right">
           <div class="card__right__footer">
             <div>
-              <i nz-icon type="setting"></i>
+              <i nz-icon nzType="setting"></i>
               <p>Imprimir</p>
             </div>
             <div>
-              <i nz-icon type="edit"></i>
+              <i nz-icon nzType="edit"></i>
               <p>Descargar</p>
             </div>
           </div>
@@ -269,7 +269,7 @@
         </div>
       </ng-template>
       <ng-template #suffixIconSearch>
-        <i nz-icon type="search"></i>
+        <i nz-icon nzType="search"></i>
       </ng-template>
     <!-- </div> -->
     <div

@@ -9,7 +9,7 @@ import { TematicaService } from '@app/core/services/tematica/tematica.service';
 import { TramiteService } from '@app/core/services/tramite/tramite.service';
 import { Administrado } from '@app/core/models/administrado.model';
 import { DetEstadoTicket } from '@app/core/models/detestadoticket.model';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { VentanillaService } from '@app/core/services/ventanilla/ventanilla.service';
 import { Ventanilla } from '@app/core/models/ventanilla.model';
 import { Router } from '@angular/router';
@@ -386,12 +386,10 @@ export class TicketComponent implements OnInit, AfterViewInit {
           const ventanillaAntigua = derivado.ventanillaAntigua;
           if (ticket.idventanilla == this.ventanilla) {
             this.listTicket.splice(1, 0, ticket);
-            this.notificationService.config({
-              nzPlacement: "topLeft"
-            });
             this.notificationService.info(
               `Ticket Derivado - Correlativo ${ticket.codigo}`,
-              `Nuevo ticket derivado en tu lista de tickets`
+              `Nuevo ticket derivado en tu lista de tickets`,
+              {nzPlacement: 'topLeft'}
             );
           }
           if (this.ventanilla == ventanillaAntigua) {
