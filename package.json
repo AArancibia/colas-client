@@ -1,11 +1,11 @@
 {
   "name": "frontend-colas",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "compodoc": "npx compodoc -p src/tsconfig.app.json -s -w",
     "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json",
-    "build": "ng build --prod",
+    "build": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,16 +21,16 @@
     "@angular/platform-browser-dynamic": "~12.2.17",
     "@angular/router": "~12.2.17",
     "@auth0/angular-jwt": "^4.2.0",
-    "@ngrx/effects": "^8.6.1",
-    "@ngrx/entity": "^8.6.1",
-    "@ngrx/store": "^8.6.1",
-    "@ngrx/store-devtools": "^8.6.1",
+    "@ngrx/effects": "^12.5.1",
+    "@ngrx/entity": "^12.5.1",
+    "@ngrx/store": "^12.5.1",
+    "@ngrx/store-devtools": "^12.5.1",
     "core-js": "^2.5.4",
     "ng-zorro-antd": "^12.1.1",
     "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.6.7",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.12.0"
   },
   "engines": {
     "node": "12.22.12",
