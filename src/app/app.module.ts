@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { registerLocaleData } from '@angular/common';
+import {APP_BASE_HREF, registerLocaleData} from '@angular/common';
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +34,10 @@ registerLocaleData(es);
     AuthenticationModule,
     SharedModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: es_ES }],
+  providers: [
+    { provide: NZ_I18N, useValue: es_ES },
+    { provide: APP_BASE_HREF, useValue: '/colas-project' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

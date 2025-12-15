@@ -8,6 +8,7 @@ import { CardDirective } from './directives/card.directive';
 import {NotificationComponent} from './components/notification/notification.component';
 import {TramitesPipe} from '@app/shared/pipes/tramites.pipe';
 import {NgZorroModule} from '@app/shared/ng-zorro.module';
+import {AssetUrlPipe} from '@app/shared/pipes/asset-url.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {NgZorroModule} from '@app/shared/ng-zorro.module';
     CardDirective,
     NotificationComponent,
     TramitesPipe,
+    AssetUrlPipe
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import {NgZorroModule} from '@app/shared/ng-zorro.module';
     CardticketDirective,
     CardDirective,
     TramitesPipe,
-    NgZorroModule
+    NgZorroModule,
+    AssetUrlPipe
   ]
 })
 export class SharedModule { }

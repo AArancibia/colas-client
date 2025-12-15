@@ -13,6 +13,17 @@ import {NzNotificationModule} from 'ng-zorro-antd/notification';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
+import { IconDefinition } from '@ant-design/icons-angular';
+
+import { BellOutline, MinusCircleOutline,CaretRightFill, SettingOutline,UserOutline } from '@ant-design/icons-angular/icons';
+
+const icons: IconDefinition[] = [
+  BellOutline,
+  MinusCircleOutline,
+  CaretRightFill,
+  SettingOutline,
+  UserOutline
+];
 
 @NgModule({
   declarations: [],
@@ -21,7 +32,7 @@ import {NzMenuModule} from 'ng-zorro-antd/menu';
     NzCardModule,
     NzListModule,
     NzTableModule,
-    NzIconModule,
+    NzIconModule.forRoot(icons),
     NzBreadCrumbModule,
     NzInputModule,
     NzPopoverModule,
