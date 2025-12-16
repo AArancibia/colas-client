@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:frontend-colas": "ng build frontend-colas --prod",
-    "serve:frontend-colas": "ng s --project frontend-colas --disable-host-check --port 4201 --live-reload false"
+    "serve:frontend-colas": "ng s --project frontend-colas --disable-host-check --host 0.0.0.0 --port 4201 --live-reload false"
   },
   "private": true,
   "dependencies": {
