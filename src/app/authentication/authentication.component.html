@@ -1,6 +1,8 @@
-<section class="authentication">
-  <img [src]="'japan.jpg' | assetUrl" class="authentication__image" alt="SIGN IN" />
-  <div class="authentication__container">
+<section nz-row class="authentication">
+  <div nz-col nzXs="24" nzLg="16" nzXl="18">
+    <img [src]="'japan.jpg' | assetUrl" class="authentication__image" alt="SIGN IN" />
+  </div>
+  <div nz-col nzXs="24" nzLg="8" nzXl="6" class="authentication__container">
     <router-outlet></router-outlet>
   </div>
 </section>
