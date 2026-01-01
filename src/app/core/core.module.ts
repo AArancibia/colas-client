@@ -14,7 +14,6 @@ import { TramiteService } from './services/tramite/tramite.service';
     CommonModule
   ],
   providers: [
-    WebsocketService,
     TicketService,
     VentanillaService,
     TematicaService,

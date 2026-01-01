@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
-import {BehaviorSubject, Subject} from 'rxjs';
+import {  Socket } from 'ngx-socket-io';
+import {BehaviorSubject} from 'rxjs';
 import {EstadoServidor} from '@app/shared/enum/estado-servidor.enum';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class WebsocketService {
-
   public socketStatus = new BehaviorSubject< any >( EstadoServidor );
   public status$ = this.socketStatus.asObservable();
 
