@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthDTO } from '../auth.dto';
 import { AuthenticationService } from '../authentication.service';
 import { tap } from 'rxjs/operators';
@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router
   ) {}
