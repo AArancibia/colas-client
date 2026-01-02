@@ -16,7 +16,9 @@ export class AppComponent implements OnInit {
     this.verificarEstadoServidor();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('CURRENT VERSION: 1.1.0');
+  }
 
   verificarEstadoServidor() {
     this.wsSocket.status$.subscribe(estado => {
