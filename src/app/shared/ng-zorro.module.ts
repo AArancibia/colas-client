@@ -15,14 +15,15 @@ import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import { IconDefinition } from '@ant-design/icons-angular';
 
-import { BellOutline, MinusCircleOutline,CaretRightFill, SettingOutline,UserOutline } from '@ant-design/icons-angular/icons';
+import { BellOutline, MinusCircleOutline,CaretRightFill, SettingOutline,UserOutline, SyncOutline } from '@ant-design/icons-angular/icons';
 
 const icons: IconDefinition[] = [
   BellOutline,
   MinusCircleOutline,
   CaretRightFill,
   SettingOutline,
-  UserOutline
+  UserOutline,
+  SyncOutline
 ];
 
 @NgModule({
