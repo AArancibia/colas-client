@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
-import { AuthDTO, AuthRO } from './auth.dto';
-import { map } from 'rxjs/operators';
+import { AuthRO } from './auth.dto';
 import {
   USUARIO,
   ACCES_TOKEN,
@@ -41,23 +40,6 @@ export class AuthenticationService {
   private request(method, endpoint, body?): Observable<any> {
     const url = this.api + endpoint;
     return this.httpClitent.request(method, url, { body });
-  }
-
-  login(auth: AuthDTO) {
-    return this.request('POST', 'usuario/login', auth).pipe(
-      map((auth: AuthRO) => {
-        this.guardarStorage(auth);
-        return true;
-      })
-    );
-  }
-
-  guardarStorage({ ventanilla, token, ...usuario }: AuthRO) {
-    localStorage.setItem(USUARIO, JSON.stringify(usuario));
-    localStorage.setItem(VENTANILLA, JSON.stringify(ventanilla));
-    localStorage.setItem(ACCES_TOKEN, token);
-    this.auth = { ventanilla, token, ...usuario };
-    this.ventanillaService.ventanillaS.next(ventanilla);
   }
 
   cargarStorage() {

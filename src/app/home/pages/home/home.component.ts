@@ -13,6 +13,7 @@ import { Ventanilla } from '@app/core/models/ventanilla.model';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthenticationService } from '@app/authentication/authentication.service';
 import { AuthRO } from '@app/authentication/auth.dto';
+import {KeycloakService} from 'keycloak-angular';
 
 /**
  * Home Component
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private usuarioService: UsuarioService,
     private ventanillaService: VentanillaService,
     private notificationService: NzNotificationService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private keycloakService: KeycloakService,
   ) {
     this.usuarioLogueado = this.authService.auth;
   }
@@ -54,6 +56,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.authService.borrarStorage();
+    this.keycloakService.logout("http://localhost:9000/login");
   }
 
   /**

@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { AuthDTO } from '../auth.dto';
-import { AuthenticationService } from '../authentication.service';
-import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -15,8 +11,6 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private formBuilder: UntypedFormBuilder,
-    private authenticationService: AuthenticationService,
-    private router: Router
   ) {}
 
   ngOnInit() {
@@ -28,10 +22,5 @@ export class SigninComponent implements OnInit {
 
   login() {
     if (this.loginForm.invalid) { return; }
-    const auth: AuthDTO = this.loginForm.getRawValue();
-    this.authenticationService
-      .login(auth)
-      .pipe(tap(() => this.router.navigate(['/ticket'])))
-      .subscribe();
   }
 }

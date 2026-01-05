@@ -23,6 +23,10 @@
             "main": "src/main.single-spa.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "base64-js",
+              "js-sha256"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets",

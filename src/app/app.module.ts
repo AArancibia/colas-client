@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,12 +14,26 @@ import { ColasStoreModule } from '@app/store/colas-store.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import {es_ES, NZ_I18N} from 'ng-zorro-antd/i18n';
 import {SharedModule} from '@app/shared/shared.module';
+import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 
 registerLocaleData(es);
 
-/**
- * The bootstrapper Module
- */
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8080',
+        realm: 'portfoliodev',
+        clientId: 'bodegaappclient',
+      },
+      initOptions: {
+        pkceMethod: 'S256',
+        redirectUri: 'http://localhost:9000/login',
+      },
+      loadUserProfileAtStartUp: false,
+    });
+}
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,11 +46,18 @@ registerLocaleData(es);
     CoreModule,
     ColasStoreModule,
     AuthenticationModule,
-    SharedModule
+    SharedModule,
+    KeycloakAngularModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },
     { provide: APP_BASE_HREF, useValue: '/colas-project' },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
   ],
   bootstrap: [AppComponent]
 })

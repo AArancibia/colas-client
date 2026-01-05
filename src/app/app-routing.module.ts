@@ -1,22 +1,23 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { AppComponent } from "./app.component";
 import { NopagefoundComponent } from "./shared/nopagefound/nopagefound.component";
-import { AuthenticationComponent } from "./authentication/authentication.component";
+import {HomeComponent} from '@app/home/pages/home/home.component';
+import {AuthGuard} from '@app/core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: "",
-    component: AppComponent
-  },
-  {
-    path: "authentication",
-    component: AuthenticationComponent,
+    component: HomeComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: "",
-        loadChildren:
-          () => import('@app/authentication/authentication.module').then(m => m.AuthenticationModule)
+        redirectTo: "ticket",
+        pathMatch: "full"
+      },
+      {
+        path: "ticket",
+        loadChildren: () => import('@app/home/pages/ticket/ticket.module').then(m => m.TicketModule)
       }
     ]
   },

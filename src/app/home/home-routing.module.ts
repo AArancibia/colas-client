@@ -1,26 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { HomeComponent } from "./pages/home/home.component";
-import { AuthGuard } from "@app/core/guards/auth.guard";
 
-const routes: Routes = [
-  {
-    path: "",
-    component: HomeComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: "",
-        redirectTo: "ticket",
-        pathMatch: "full"
-      },
-      {
-        path: "ticket",
-        loadChildren: () => import('@app/home/pages/ticket/ticket.module').then(m => m.TicketModule)
-      }
-    ]
-  }
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

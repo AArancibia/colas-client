@@ -15,6 +15,7 @@ import { Ventanilla } from '@app/core/models/ventanilla.model';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/authentication/authentication.service';
 import {Observable} from 'rxjs';
+import {KeycloakService} from 'keycloak-angular';
 
 /**
  * @author Alexis Arancibia Sanchez <aarancibia4251@gmail.com>
@@ -49,6 +50,7 @@ export class TicketComponent implements OnInit, AfterViewInit {
   activo = 0;
   estadoVentanilla = 0;
   datosVentanilla: Ventanilla = new Ventanilla();
+  isLoggedIn = false;
   constructor(
     private wsSocket: WebsocketService,
     public ticketService: TicketService,
@@ -57,25 +59,30 @@ export class TicketComponent implements OnInit, AfterViewInit {
     private notificationService: NzNotificationService,
     private ventanillaService: VentanillaService,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private keycloakService: KeycloakService,
   ) {}
 
   /**
    * Funcion ngOnInit de Angular
    *
    */
-  ngOnInit() {
-    this.mostrarInfoAdministrado = {};
-    this.validacionEstados = null;
-    this.idtramite = null;
-    this.pasos = 0;
-    this.datosVentanilla = this.authenticationService.auth.ventanilla;
-    this.listarVentanillas();
-    this.listarTematicas();
-    this.ventanilla = this.datosVentanilla.id;
-    this.listarTickets();
-    this.derivar = false;
-    this.cargarConfiguracion();
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
+    if (this.isLoggedIn) {
+      await this.keycloakService.loadUserProfile();
+      this.mostrarInfoAdministrado = {};
+      this.validacionEstados = null;
+      this.idtramite = null;
+      this.pasos = 0;
+      this.datosVentanilla = this.authenticationService.auth.ventanilla;
+      this.listarVentanillas();
+      this.listarTematicas();
+      this.ventanilla = this.datosVentanilla.id;
+      this.listarTickets();
+      this.derivar = false;
+      this.cargarConfiguracion();
+    }
   }
 
   /**

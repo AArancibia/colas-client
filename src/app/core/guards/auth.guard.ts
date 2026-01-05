@@ -1,21 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '@app/authentication/authentication.service';
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {KeycloakAuthGuard, KeycloakService} from 'keycloak-angular';
+import {UsuarioService} from '@app/core/services/usuario/usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard  {
+export class AuthGuard extends KeycloakAuthGuard{
   constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {}
+    protected override readonly router: Router,
+    protected readonly keycloak: KeycloakService,
+    private usuarioService: UsuarioService,
+  ) {
+    super(router, keycloak);
+  }
 
-  canActivate() {
-    if (!this.authenticationService.estaLogueado()) {
-      this.router.navigate(['/authentication']);
-      return false;
+  async isAccessAllowed(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+
+    if (!this.authenticated) {
+      window.location.href = "http://localhost:9000/login";
+    } else {
+      try {
+        await this.keycloak.loadUserProfile(true);
+        await this.usuarioService.userInformation(this.keycloak.getUsername()).toPromise();
+      } catch (e) {
+        console.error(e);
+      }
     }
-    return true;
+
+    return this.authenticated;
   }
 }
