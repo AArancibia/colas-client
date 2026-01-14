@@ -14,6 +14,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthenticationService } from '@app/authentication/authentication.service';
 import { AuthRO } from '@app/authentication/auth.dto';
 import {KeycloakService} from 'keycloak-angular';
+import {environment} from '@env/environment';
 
 /**
  * Home Component
@@ -56,7 +57,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.authService.borrarStorage();
-    this.keycloakService.logout("http://localhost:9000/login");
+    this.keycloakService.logout(`${environment.keycloak.redirectUri}/authentication/signin`);
   }
 
   /**
