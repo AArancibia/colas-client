@@ -18,9 +18,8 @@ export class AuthGuard extends KeycloakAuthGuard{
   async isAccessAllowed(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-
-    if (!this.authenticated) {
-      window.location.href = "http://localhost:9000/login";
+    if (!this.authenticated && !this.keycloak.getKeycloakInstance().authenticated) {
+      this.router.navigate(['/authentication/signin']);
     } else {
       try {
         await this.keycloak.loadUserProfile(true);

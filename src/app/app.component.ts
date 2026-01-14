@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from './core/services/websocket/websocket.service';
 import { NotificacionService } from '@app/shared/components/notification/notificacion.service';
+import { KeycloakService} from 'keycloak-angular';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +12,13 @@ export class AppComponent implements OnInit {
   title = 'frontend-colas';
   constructor(
     public wsSocket: WebsocketService,
-    private notificationService: NotificacionService
+    private notificationService: NotificacionService,
+    private keycloakService: KeycloakService,
   ) {
     this.verificarEstadoServidor();
   }
 
-  ngOnInit(): void {
-    console.log('CURRENT VERSION: 1.1.0');
-  }
+  ngOnInit(): void { }
 
   verificarEstadoServidor() {
     this.wsSocket.status$.subscribe(estado => {

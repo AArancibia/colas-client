@@ -22,6 +22,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'authentication',
+    loadChildren: () => import('@app/authentication/authentication.module').then(m => m.AuthenticationModule),
+  },
+  {
     path: "**",
     component: NopagefoundComponent
   }

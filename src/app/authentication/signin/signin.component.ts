@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {Component, inject, OnInit} from '@angular/core';
+import {KeycloakService} from 'keycloak-angular';
+import {environment} from '@env/environment';
 
 @Component({
   selector: 'app-signin',
@@ -7,20 +8,13 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  loginForm: UntypedFormGroup;
+  keycloak = inject(KeycloakService);
 
-  constructor(
-    private formBuilder: UntypedFormBuilder,
-  ) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', Validators.required]
-    });
-  }
+  ngOnInit() {}
 
-  login() {
-    if (this.loginForm.invalid) { return; }
+  async login() {
+    await this.keycloak.login({redirectUri: `${environment.keycloak.redirectUri}/ticket`});
   }
 }

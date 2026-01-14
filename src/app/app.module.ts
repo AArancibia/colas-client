@@ -15,6 +15,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import {es_ES, NZ_I18N} from 'ng-zorro-antd/i18n';
 import {SharedModule} from '@app/shared/shared.module';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
+import {environment} from '@env/environment';
 
 registerLocaleData(es);
 
@@ -22,15 +23,15 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8080',
-        realm: 'portfoliodev',
-        clientId: 'bodegaappclient',
+        url: environment.keycloak.url,
+        realm: environment.keycloak.realm,
+        clientId: environment.keycloak.clientId,
       },
       initOptions: {
         pkceMethod: 'S256',
-        redirectUri: 'http://localhost:9000/login',
+        redirectUri: environment.keycloak.redirectUri,
+        onLoad: 'check-sso'
       },
-      loadUserProfileAtStartUp: false,
     });
 }
 
