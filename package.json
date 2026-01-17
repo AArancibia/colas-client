@@ -1,6 +1,6 @@
 {
   "name": "@arancibia/colas",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "scripts": {
     "ng": "ng",
     "compodoc": "npx compodoc -p tsconfig.app.json -s -w",
